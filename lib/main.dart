@@ -93,6 +93,22 @@ class _SecondWindowState extends State<SecondWindow> {
     Text(
       'Sub',
     ),
+    SettingsSection(
+      titlePadding: EdgeInsets.all(20),
+      title: 'Section 1',
+      tiles: [
+        SettingsTile.switchTile(
+          title: 'Use System Theme',
+          leading: Icon(Icons.phone_android),
+          switchValue: isSwitched,
+          onToggle: (value) {
+            setState(() {
+              isSwitched = value;
+            });
+          },
+        ),
+      ],
+    ),
   ];
 
   void _indexTapped(int index) {
