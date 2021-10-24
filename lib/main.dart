@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:redditech/api/login.dart';
-import 'package:redditech/api/reddit_info.dart';
+import 'package:api/login.dart';
+import 'package:api/reddit_info.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 void main() {
