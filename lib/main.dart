@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Redditech',
-      theme: ThemeData(primaryColor: Colors.orange[200]),
+      theme: ThemeData(primaryColor: Colors.white),
       debugShowCheckedModeBanner: false,
       home: const Homepage(),
     );
@@ -30,23 +30,6 @@ class Homepage extends StatefulWidget {
   @override
   State<Homepage> createState() => _HomepageState();
 }
-
-/*
-Widget build(BuildContext context) {
-  var _setting = false;
-
-  return SwitchListTile(
-    title: const Text('Lights'),
-    value: _setting,
-    onChanged: (bool value) {
-      setState(() {
-        _setting = value;
-      });
-    },
-    secondary: const Icon(Icons.lightbulb_outline),
-  );
-}
-*/
 
 class _HomepageState extends State<Homepage> {
 

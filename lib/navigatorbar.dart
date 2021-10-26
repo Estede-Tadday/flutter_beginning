@@ -6,6 +6,23 @@ import 'package:redditech/api/reddit_info.dart';
 import 'search.dart';
 import 'package:redditech/main.dart';
 
+/*
+Widget build(BuildContext context) {
+  var _setting = false;
+
+  return SwitchListTile(
+    title: const Text('Lights'),
+    value: _setting,
+    onChanged: (bool value) {
+      setState(() {
+        _setting = value;
+      });
+    },
+    secondary: const Icon(Icons.lightbulb_outline),
+  );
+}
+*/
+
 class SecondWindow extends StatefulWidget {
   const SecondWindow({Key? key}) : super(key: key);
 
