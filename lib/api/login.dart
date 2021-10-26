@@ -6,6 +6,7 @@ import 'package:redditech/api/reddit_info.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:redditech/main.dart';
 import 'package:redditech/post.dart';
+import 'package:redditech/navigatorbar.dart';
 
 final clientID = 'tUJfmmKbTJxAank_3n4nSA';
 final clientSecret = 'udkE45h_BIjvMBYltvydeGL1br9wJQ';
