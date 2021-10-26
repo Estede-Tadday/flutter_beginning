@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:redditech/api/reddit_info.dart';
+<<<<<<< HEAD
 import 'search.dart';
 import 'package:redditech/main.dart';
 
+=======
+import 'package:redditech/main.dart';
+
+import 'search.dart';
+
+>>>>>>> [+] problem setting
 /*
 Widget build(BuildContext context) {
   var _setting = false;
@@ -23,6 +30,66 @@ Widget build(BuildContext context) {
 }
 */
 
+<<<<<<< HEAD
+=======
+class _CustomListView extends StatefulWidget {
+  const _CustomListView({Key? key}) : super(key: key);
+
+  @override
+  _CustomListViewState createState() => _CustomListViewState();
+}
+
+class _CustomListViewState extends State<_CustomListView> {
+  @override
+  Widget build(BuildContext context) {
+    static final List<Widget> _widgetOptions = <Widget>[
+      ListView(
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
+          Container(
+            height: 200,
+            color: Colors.black,
+            child: const Center(child: Text('Entry A')),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 200,
+            color: Colors.black,
+            child: const Center(child: Text('Entry B')),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 200,
+            color: Colors.black,
+            child: const Center(child: Text('Entry C')),
+          ),
+        ],
+      ),
+      const Text(
+        'Add',
+      ),
+      const Text(
+        'Sub',
+      ),
+      SwitchListTile(
+        title: const Text('Lights'),
+        value: _setting,
+        onChanged: (bool value) {
+          setState(() {
+            _setting = value;
+          });
+        },
+      )
+    ];
+  }
+}
+
+
+>>>>>>> [+] problem setting
 class SecondWindow extends StatefulWidget {
   const SecondWindow({Key? key}) : super(key: key);
 
@@ -32,6 +99,10 @@ class SecondWindow extends StatefulWidget {
 
 class _SecondWindowState extends State<SecondWindow> {
   int _selectedIndex = 0;
+<<<<<<< HEAD
+=======
+  var setting = false;
+>>>>>>> [+] problem setting
 
   static final List<Widget> _widgetOptions = <Widget>[
     ListView(
@@ -60,6 +131,7 @@ class _SecondWindowState extends State<SecondWindow> {
         ),
       ],
     ),
+<<<<<<< HEAD
     Text(
       'Add',
     ),
@@ -69,6 +141,23 @@ class _SecondWindowState extends State<SecondWindow> {
     Text(
       'Setting',
     ),
+=======
+    const Text(
+      'Add',
+    ),
+    const Text(
+      'Sub',
+    ),
+    SwitchListTile(
+      title: const Text('Lights'),
+      value: setting,
+      onChanged: (bool value) {
+        setState(() {
+          setting = value;
+        });
+      },
+    )
+>>>>>>> [+] problem setting
   ];
 
   void _indexTapped(int index) {
@@ -84,12 +173,17 @@ class _SecondWindowState extends State<SecondWindow> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> [+] problem setting
     return Scaffold(
       appBar: AppBar(actions: [
         Center(
           child: DropdownButton(
             icon: Icon(Icons.arrow_drop_down),
             value: _value,
+<<<<<<< HEAD
             items: [
               DropdownMenuItem(
                 child: Text("Best"),
@@ -101,6 +195,28 @@ class _SecondWindowState extends State<SecondWindow> {
               ),
               DropdownMenuItem(
                 child: Text("Top"),
+=======
+            items: const [
+              DropdownMenuItem(
+                child: Text(
+                  "Best",
+                  style: TextStyle(color: Colors.white),
+                ),
+                value: 1,
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  "Hot",
+                  style: TextStyle(color: Colors.white),
+                ),
+                value: 2,
+              ),
+              DropdownMenuItem(
+                child: Text(
+                  "Top",
+                  style: TextStyle(color: Colors.white),
+                ),
+>>>>>>> [+] problem setting
                 value: 3,
               ),
             ],
@@ -125,6 +241,7 @@ class _SecondWindowState extends State<SecondWindow> {
         child: ListView(padding: EdgeInsets.zero,
             children: <Widget>[
               DrawerHeader(
+<<<<<<< HEAD
                 decoration: const BoxDecoration(color: Colors.lightBlue),
                 child: Image.network(red.userInfo.pictureUrl
                     .substring(0, red.userInfo.pictureUrl.indexOf(''))),
@@ -137,6 +254,20 @@ class _SecondWindowState extends State<SecondWindow> {
                         fontSize: 20,
                         color: Colors.deepOrangeAccent),
                   )),
+=======
+                decoration: const BoxDecoration(color: Color(0xFFFFB74D)),
+            child: Image.network(red.userInfo.pictureUrl
+                .substring(0, red.userInfo.pictureUrl.indexOf(''))),
+          ),
+              Center(
+                  child: Text(
+                    red.userInfo.name,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Color(0xFFFFB74D)),
+          )),
+>>>>>>> [+] problem setting
               ListTile(
                 subtitle: ElevatedButton.icon(
                   icon: Icon(Icons.account_circle),
@@ -198,22 +329,38 @@ class _SecondWindowState extends State<SecondWindow> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+<<<<<<< HEAD
             backgroundColor: Colors.lightBlue,
+=======
+            backgroundColor: Color(0xFFFFB74D),
+>>>>>>> [+] problem setting
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: "Add",
+<<<<<<< HEAD
             backgroundColor: Colors.lightBlue,
+=======
+            backgroundColor: Color(0xFFFFB74D),
+>>>>>>> [+] problem setting
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.article),
             label: "Sub",
+<<<<<<< HEAD
             backgroundColor: Colors.lightBlue,
+=======
+            backgroundColor: Color(0xFFFFB74D),
+>>>>>>> [+] problem setting
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
+<<<<<<< HEAD
             backgroundColor: Colors.lightBlue,
+=======
+            backgroundColor: Color(0xFFFFB74D),
+>>>>>>> [+] problem setting
           ),
         ],
         currentIndex: _selectedIndex,
