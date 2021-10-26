@@ -17,14 +17,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Redditech',
-<<<<<<< HEAD
-      theme: ThemeData(primaryColor: Colors.white),
-=======
       theme: ThemeData(
         appBarTheme: AppBarTheme(
         color: const Color(0xFFFFB74D),
     )),
->>>>>>> [+] problem setting
       debugShowCheckedModeBanner: false,
       home: const Homepage(),
     );
@@ -110,13 +106,6 @@ class _HomepageState extends State<Homepage> {
             ],
           )),
       appBar: AppBar(
-<<<<<<< HEAD
-        title: Center(
-            child: Text(
-          "Redditech",
-          style: TextStyle(color: Colors.black54),
-        )),
-=======
         title: Column(
           children: [
             Center(
@@ -126,7 +115,6 @@ class _HomepageState extends State<Homepage> {
             )),
           ],
         ),
->>>>>>> [+] problem setting
       ),
     );
   }
@@ -141,11 +129,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-      backgroundColor: Colors.orange[200],
-=======
       backgroundColor: Colors.white,
->>>>>>> [+] problem setting
       appBar: AppBar(
         title: Text("Profile"),
       ),
