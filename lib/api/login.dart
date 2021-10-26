@@ -5,6 +5,7 @@ import 'package:redditech/api/make_request.dart';
 import 'package:redditech/api/reddit_info.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:redditech/main.dart';
+import 'package:redditech/post.dart';
 
 final clientID = 'tUJfmmKbTJxAank_3n4nSA';
 final clientSecret = 'udkE45h_BIjvMBYltvydeGL1br9wJQ';
@@ -15,7 +16,7 @@ final url = Uri.https('www.reddit.com', '/api/v1/authorize.compact', {
   'state': 'code_authorize',
   'redirect_uri': callbackURL,
   'duration': 'temporary',
-  'scope': 'identity'
+  'scope': 'identity,mysubreddits,read'
 });
 
 Future<int> accessToken(String code) async {
@@ -56,30 +57,25 @@ class LoginWebView extends StatelessWidget {
       body: Container(
         child: WebView(
           initialUrl: url.toString(),
-          onPageFinished: (String url) {
-            var uri = Uri.parse(url);
-            if (uri.host == 'img.pikbest.com') {
-              //ElevatedButton.icon(onPressed: () {
-              //Navigator.pushReplacement(
-              //context,
-              //MaterialPageRoute(builder: (context) => SecondWindow()),
-              //);
-              //}, icon: Icon(Icons.arrow_drop_down_circle), label: Text("App"));
-              var ret = accessToken(uri.queryParameters["code"].toString());
+          navigationDelegate: (obj) async {
+            if (obj.url.startsWith('https://img.pikbest.com') == true) {
+              var uri = Uri.parse(obj.url);
+              accessToken(uri.queryParameters["code"].toString());
+              Future.delayed(Duration(seconds: 2), () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SecondWindow()),
+                );
+              });
+
+              return NavigationDecision.prevent;
             }
+            return NavigationDecision.navigate;
           },
           javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => SecondWindow()),
-          );
-        },
-          child: const Icon(Icons.navigation),
-    ),
     );
   }
 }

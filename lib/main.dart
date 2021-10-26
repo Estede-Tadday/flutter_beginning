@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
-import 'package:api/login.dart';
-import 'package:api/reddit_info.dart';
+import 'package:redditech/api/login.dart';
+import 'package:redditech/api/reddit_info.dart';
+import 'package:redditech/models/album.dart';
 import 'package:settings_ui/settings_ui.dart';
 
 void main() {
@@ -17,9 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Redditech',
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-      ),
+      theme: ThemeData(primaryColor: Colors.orange[200]),
       debugShowCheckedModeBanner: false,
       home: const _Homepage(),
     );
@@ -39,50 +38,49 @@ class SecondWindow extends StatefulWidget {
   @override
   State<SecondWindow> createState() => _SecondWindowState();
 }
+/*
+Widget build(BuildContext context) {
+  var _setting = false;
+
+  return SwitchListTile(
+    title: const Text('Lights'),
+    value: _setting,
+    onChanged: (bool value) {
+      setState(() {
+        _setting = value;
+      });
+    },
+    secondary: const Icon(Icons.lightbulb_outline),
+  );
+}
+*/
 
 class _SecondWindowState extends State<SecondWindow> {
   int _selectedIndex = 0;
-  var isSwitched = false;
 
   static final List<Widget> _widgetOptions = <Widget>[
     ListView(
       padding: const EdgeInsets.all(8),
       children: <Widget>[
         Container(
-          height: 130,
-          color: Colors.amber[600],
+          height: 200,
+          color: Colors.black,
           child: const Center(child: Text('Entry A')),
         ),
         const SizedBox(
           height: 10,
         ),
         Container(
-          height: 130,
-          color: Colors.amber[600],
+          height: 200,
+          color: Colors.black,
           child: const Center(child: Text('Entry B')),
         ),
         const SizedBox(
           height: 10,
         ),
         Container(
-          height: 130,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Entry C')),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 130,
-          color: Colors.amber[600],
-          child: const Center(child: Text('Entry C')),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 130,
-          color: Colors.amber[600],
+          height: 200,
+          color: Colors.black,
           child: const Center(child: Text('Entry C')),
         ),
       ],
@@ -93,21 +91,8 @@ class _SecondWindowState extends State<SecondWindow> {
     Text(
       'Sub',
     ),
-    SettingsSection(
-      titlePadding: EdgeInsets.all(20),
-      title: 'Section 1',
-      tiles: [
-        SettingsTile.switchTile(
-          title: 'Use System Theme',
-          leading: Icon(Icons.phone_android),
-          switchValue: isSwitched,
-          onToggle: (value) {
-            setState(() {
-              isSwitched = value;
-            });
-          },
-        ),
-      ],
+    Text(
+      'Setting',
     ),
   ];
 
@@ -120,11 +105,37 @@ class _SecondWindowState extends State<SecondWindow> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('Search');
   var search;
+  var _value = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
+        Center(
+          child: DropdownButton(
+            icon: Icon(Icons.arrow_drop_down),
+            value: _value,
+            items: [
+              DropdownMenuItem(
+                child: Text("Best"),
+                value: 1,
+              ),
+              DropdownMenuItem(
+                child: Text("Hot"),
+                value: 2,
+              ),
+              DropdownMenuItem(
+                child: Text("Top"),
+                value: 3,
+              ),
+            ],
+            onChanged: (int? value) {
+              setState(() {
+                _value = value!;
+              });
+            },
+          ),
+        ),
         IconButton(
           onPressed: () {
             Navigator.push(
@@ -138,12 +149,11 @@ class _SecondWindowState extends State<SecondWindow> {
       drawer: Drawer(
         child: ListView(padding: EdgeInsets.zero, children: <Widget>[
           DrawerHeader(
-            decoration: const BoxDecoration(color: Colors.cyan),
-            child: Image.network(
-              red.userInfo.pictureUrl.substring(0, red.userInfo.pictureUrl.indexOf('?'))
-            ),
+            decoration: const BoxDecoration(color: Colors.lightBlue),
+            child: Image.network(red.userInfo.pictureUrl
+                .substring(0, red.userInfo.pictureUrl.indexOf(''))),
           ),
-           Center(
+          Center(
               child: Text(
             red.userInfo.name,
             style: TextStyle(
@@ -212,22 +222,22 @@ class _SecondWindowState extends State<SecondWindow> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.lightBlue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: "Add",
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.lightBlue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.article),
             label: "Sub",
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.lightBlue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
-            backgroundColor: Colors.cyan,
+            backgroundColor: Colors.lightBlue,
           ),
         ],
         currentIndex: _selectedIndex,
@@ -239,8 +249,6 @@ class _SecondWindowState extends State<SecondWindow> {
 }
 
 class _HomepageState extends State<_Homepage> {
-  var clientId;
-  var clientSecret;
 
   @override
   Widget build(BuildContext context) {
@@ -337,7 +345,8 @@ class _SearchBar extends StatelessWidget {
           decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
               hintText: 'Search...',
-              border: InputBorder.none),
+              border: InputBorder.none,
+          ),
         ),
       )),
     );
@@ -345,15 +354,55 @@ class _SearchBar extends StatelessWidget {
 }
 
 class _Profile extends StatelessWidget {
-  const _Profile({Key? key}) : super(key: key);
+  _Profile({Key? key}) : super(key: key);
+  var user = Album("Estede-Tadday Makusa", "estedemks@gmail.com",
+      "La meilleure description Tinder homme doit mettre en évidence quelques traits attrayants d’une manière qui semble désinvolte et naturelle. Elle ne vous connaît pas, donc elle vous juge uniquement sur vos photos et votre biographie – et cette première impression se forme en quelques microsecondes.");
+  var follow = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange[200],
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Container(),
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                "images/reddit.png",
+                height: 150.0,
+                width: 100.0,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "Follower : $follow",
+              textAlign: TextAlign.start,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              user.name,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              user.email,
+              style: TextStyle(color: Colors.grey, fontSize: 16),
+            ),
+            const SizedBox(height: 30),
+            Text(
+              user.about,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, height: 1.4),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

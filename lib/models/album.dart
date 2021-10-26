@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Album {
-  int userId;
-  int id;
-  String title;
+  String name;
+  String email;
+  String about;
 
-  Album(this.userId, this.id, this.title);
+  Album(this.name, this.email, this.about);
 }

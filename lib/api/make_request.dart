@@ -12,6 +12,6 @@ Future<String> makeGetRequest(String url) async {
       }
   );
   if (response.statusCode != 200)
-      return "null";
+    return "null";
   return response.body;
 }
