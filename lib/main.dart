@@ -147,7 +147,8 @@ class _SecondWindowState extends State<SecondWindow> {
         )
       ]),
       drawer: Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+        child: ListView(padding: EdgeInsets.zero,
+        children: <Widget>[
           DrawerHeader(
             decoration: const BoxDecoration(color: Colors.lightBlue),
             child: Image.network(red.userInfo.pictureUrl
@@ -244,6 +245,7 @@ class _SecondWindowState extends State<SecondWindow> {
         selectedItemColor: Colors.amber[800],
         onTap: _indexTapped,
       ),
+
     );
   }
 }
